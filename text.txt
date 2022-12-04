@@ -1,0 +1,35 @@
+...rest = rest operator, pega todas as propriedades do componente 
+
+exemplo de botam com propriedades: 
+  return (
+    <Container>  
+    <h1>Hello Word!</h1>
+    <span>Richard</span>
+    <Button title=" Login " loading />
+    <Button title=" Cadastrar " />
+    <Button title=" foi "  />
+    </Container>
+
+  )
+}
+
+no index dele temos:
+ 
+export function Button({title, loading = false, ...rest}){
+    return (
+    <Container  
+    type='button'
+    disabled= {loading}
+    {...rest}
+    >
+    {loading ? 'Carregando...' : title}
+    </Container>
+    );
+}
+
+
+
+
+instalações: 
+
+npm install react-icons --save

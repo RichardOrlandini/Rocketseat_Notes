@@ -41,6 +41,7 @@ export function Home(){
                   ]
                 }} 
                 />  
+                
             </Section>
           </Content>
 

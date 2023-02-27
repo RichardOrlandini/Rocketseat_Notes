@@ -1,4 +1,4 @@
-//Configuração do axios
+//Configuração do axios.
 
 import axios from "axios";
 

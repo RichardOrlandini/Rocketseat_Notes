@@ -7,18 +7,20 @@ import { api } from '../../services/api';
 export function Header(){
     const { sigOut, user} = useAuth();
 
-    const avatarUrl = user.avatar ?? `${api.defaults.baseURL}/files/${user.avatar}`;
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
 
 
     return (
         <Container>
             <Profile to="/profile">
-                <img src={avatarUrl}
-                alt="Foto do usuário" />
+                <img 
+                src={avatarUrl}
+                alt={user.name} 
+                />
 
                 <div>
                     <span>Bem vindo</span>
-                    <strong>Richard Orlandini</strong>
+                    <strong>{user.name}</strong>
                 </div>
             </Profile>
 

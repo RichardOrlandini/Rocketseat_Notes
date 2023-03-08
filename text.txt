@@ -1,3 +1,47 @@
+instalações: 
+
+npm i --save styled-components
+npm install react-icons --save
+
+
+
+------------------
+Modulo de cores em toda a aplicação:
+Pasta Styles : 
+arquivo theme.js:
+
+criamos uma função default onde envolvemos ela em todas nossa aplicação:
+
+export default {
+    COLORS: {
+        BACKGROUND_900: "#232129",
+        BACKGROUND_800: "#312E38",
+        BACKGROUND_700: "#3E3B47",
+    
+        WHITE: "#F4EDE8",
+        ORANGE: "#FF9000",
+    
+        GRAY_100: "#999591",
+        GRAY_300: "#666360",
+    
+        RED: "#FF002E"
+      }
+};
+
+no arquivo main.jsx: 
+
+import { ThemeProvider } from 'styled-components' // arquivo para manipulações do syled
+import theme from './styles/theme'; // arquivo das cores da aplicação.
+
+Envolvemos esse componente em toda nossa aplicação:
+
+  <React.StrictMode>
+    <ThemeProvider theme={theme}> // colocamos esse função de theme que recebe o arquivo com o nome default.
+    <Home/>
+    </ThemeProvider>
+  </React.StrictMode>
+)
+---------------------------------------
 ...rest = rest operator, pega todas as propriedades do componente 
 
 exemplo de botam com propriedades: 
@@ -30,6 +74,3 @@ export function Button({title, loading = false, ...rest}){
 
 
 
-instalações: 
-
-npm install react-icons --save

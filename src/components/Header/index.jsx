@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/auth';
 import { Container, Profile, Logout } from "./styled";
 import { api } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
-
+import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 export function Header(){
     const { sigOut, user} = useAuth();
     const navigation = useNavigate();

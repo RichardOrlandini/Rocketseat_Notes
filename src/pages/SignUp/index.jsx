@@ -32,7 +32,7 @@ export function SignUp(){
             if  (error.response){
                 alert(error.response.data.message);
             }else {
-                alert("Não foi possivel cadastrar")
+                alert("Não foi possivel cadastrar");
             }
         });                  
     }

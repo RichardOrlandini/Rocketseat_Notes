@@ -6,4 +6,4 @@ export function Tag({title, ...rest}){
             {title}
         </Container>
     )
-}
+} 

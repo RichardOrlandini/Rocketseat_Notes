@@ -40,13 +40,12 @@ export function New(){
     } 
 
     function handleAddTags(){
-        setTags(prevState => [...prevState]);
+        setTags(prevState => [...prevState, setTags]);
         setNewTags("");
     }
 
     function handleRemoveTag(deleted){
         setTags(prevState => prevState.filter(tag => tag !== deleted));
-
     }
 
     async function handleNewNote(){
@@ -59,7 +58,7 @@ export function New(){
             return alert("Você deixou uma  link no campo para adicionar, mas não clicou em adicionar.");
         }
 
-        if (newTag){
+        if (newTags){
             return alert("Você deixou uma tag no campo para adicionar, mas não clicou em adicionar.");
         }
 
@@ -139,6 +138,7 @@ export function New(){
                         />
                         </div>
                     </Section>
+                    
                     <Button 
                     onClick={handleNewNote}
                     title="Salvar" />

@@ -2,6 +2,8 @@ instalações:
 
 npm i --save styled-components
 npm install react-icons --save
+npm install react-router-dom   : react router dom: para fazer navegações na pagina:
+
 
 
 
@@ -70,6 +72,15 @@ export function Button({title, loading = false, ...rest}){
     </Container>
     );
 }
+
+---------
+Navegação>: utilizamos o LINK
+
+                <Link to="/">
+                    Voltar para o login
+                </Link>
+
+
 
 
 

@@ -13,7 +13,6 @@ import { Container , Form , Avatar} from "./style"
 
 export function Profile(){
     const { user, updateProfile } = useAuth();
-    
 
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
@@ -36,7 +35,7 @@ export function Profile(){
             name,
             email,
             password: passwordNew ,
-            old_password: passwordOld
+            old_password: passwordOld,
         }
 
         const userUpdated = Object.assign(user, updated);
@@ -78,7 +77,8 @@ export function Profile(){
                     />
                 </label>
             </Avatar>
-        <Input
+            
+             <Input
             placeholder="Nome"
             type="text"
             icon={FiUser}
@@ -110,7 +110,7 @@ export function Profile(){
 
         <Button  title="Salvar"  onClick={handleUpdate}  /> 
         </Form>
-    </Container>
 
+    </Container>
     )
 }

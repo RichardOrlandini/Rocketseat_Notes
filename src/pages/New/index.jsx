@@ -40,12 +40,12 @@ export function New(){
     } 
 
     function handleAddTags(){
-        setTags(prevState => [...prevState, setTags]);
+        setTags(prevState => [...prevState, newTags]);
         setNewTags("");
     }
 
     function handleRemoveTag(deleted){
-        setTags(prevState => prevState.filter(tag => tag !== deleted));
+        setTags(prevState => prevState.filter(tag => tag !== deleted, 1));
     }
 
     async function handleNewNote(){

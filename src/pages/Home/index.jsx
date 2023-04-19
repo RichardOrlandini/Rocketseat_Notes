@@ -12,11 +12,10 @@ import { ButtonText } from '../../components/ButtonText'
 import { useNavigate } from 'react-router-dom';
 
 export function Home(){
-  const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
   const [tagsSelected, setTagsSelected] = useState([]);
+  const [search, setSearch] = useState("");
   const [notes, setNotes] = useState([]);
-
   const navigate = useNavigate();
   
   function handleDetails(id){
@@ -27,7 +26,6 @@ export function Home(){
     if(tagName === "all"){
       return setTagsSelected([]);
     }
-
 
     const alreadySelected = tagsSelected.includes(tagName);
 
@@ -44,7 +42,6 @@ export function Home(){
       const response = await api.get("/tags");
       setTags(response.data);
     }
-
     fetchTags(); 
   }, []);
 
@@ -77,20 +74,20 @@ export function Home(){
             {
               tags && tags.map(tag => (
                 <li key={String(tag.id)}>
-                  <ButtonText title={tag.name}/>
-                  onClick={() => handleTagSelected(tag.name)}
-                  isActive={tagsSelected.includes(tag.name)}
+                  <ButtonText 
+                    title={tag.name}
+                    onClick={() => handleTagSelected(tag.name)}
+                    isActive={tagsSelected.includes(tag.name)}
+                    />
                   </li>
-
               ))
-
             }
-          </Menu>
 
+          </Menu>
           <Search>
             <Input 
             placeholder= "Pesquisar pelo título" 
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={e => setSearch(e.target.value)}
             icon={FiSearch} />
           </Search>
 
@@ -114,4 +111,4 @@ export function Home(){
           </NewNote>
         </Container>
     );
-}
+};

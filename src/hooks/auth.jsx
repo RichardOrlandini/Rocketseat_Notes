@@ -1,27 +1,21 @@
 import { useEffect } from 'react';
 import { createContext, useContext, useState } from 'react';
-
 import { api } from '../services/api';
-
 const AuthContext = createContext({});
 
 function AuthProvider({ children }){
   const [data, setData] = useState({});
 
-  async function signIn({ email, password }){
-    
+  async function signIn({ email, senha }){
     try {
-      const response = await api.post("/sessions", { email, password});
-      const {user, token } = response.data;
+      const response = await api.post("/login", { email, senha});
+      //console.log(response + " " + ' RESPONSEEE')
+      const { user, token } = response.data;
 
-      localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
-      localStorage.setItem("@rocketnotes:token", token);
-
+      localStorage.setItem("@suplament:user", JSON.stringify(user));
+      localStorage.setItem("@suplament:token", token.token);
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-      setData({user, token});
-
-
+      setData({token, user});
     }catch (error) {
       if(error.response){
         alert(error.response.data.message);
@@ -32,46 +26,16 @@ function AuthProvider({ children }){
   }
 
   function signOut(){
-    localStorage.removeItem("@rocketnotes:token");
-    localStorage.removeItem("@rocketnotes:user");
-
+    localStorage.removeItem("@suplament:token");
+    localStorage.removeItem("@suplament:user");
     setData({});
   }
 
-  async function updateProfile({ user, avatarFile}){
-    try {
-
-      if (avatarFile){
-        const fileUploadForm = new FormData();
-        fileUploadForm.append("avatar", avatarFile);
-
-        const response =  await api.patch("/users/avatar", fileUploadForm);
-
-        user.avatar = response.data.avatar;
-      }
-
-      await api.put("/users", user);
-      localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
-
-      setData({ user, token: data.token });
-      alert("Perfil atualizado");
-
-    } catch (error) {
-        if(error.response){
-          alert(error.response.data.message);
-        }else{
-          alert("Não foi possível atualizar o perfil.");
-        }
-    }
-  }
-
-  useEffect(() =>{ //1-parte uma arrow function e depois um vetor
-    const token = localStorage.getItem("@rocketnotes:token");
-    const user = localStorage.getItem("@rocketnotes:user");
-
+  useEffect(() =>{ 
+    const token = localStorage.getItem("@suplament:token");
+    const user = localStorage.getItem("@suplament:user");
     if (token && user){
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
       setData({
         token,
         user: JSON.parse(user)
@@ -83,7 +47,7 @@ function AuthProvider({ children }){
     <AuthContext.Provider value={{ 
       signIn,
       signOut,
-      updateProfile,
+      //updateProfile,
       user: data.user,
     }}>
       {children}

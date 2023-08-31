@@ -1,54 +1,52 @@
-import {useState} from 'react';
-
-import { FiMail, FiLock} from 'react-icons/fi';
+import { useState } from 'react';
+import { FiMail, FiLock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-
-import { useAuth }  from '../../hooks/auth';
+import axios from 'axios';
+import { useAuth } from '../../hooks/auth';
 
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 
-import { Container , Form, Background} from './styles';
+import { Container, Form, Background } from './styles';
 
-export function Signln(){
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+export function Signln() {
+  const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
+  const { signIn } = useAuth();
 
-    const { signIn } = useAuth();
+  function handleSignIN() {
+    signIn({ email, senha });
+  }
 
-    function handleSignIN(){
-        signIn({email, password});
-    }
+  return (
+    <Container>
+      <Form>
+        <h1>Supla-Ment</h1>
+        <p>Compre os melhores suplementos</p>
 
-    return (
-        <Container>
-            <Form>
-                <h1>Rocket Notes</h1>
-                <p>Aplicação para salvar e gerenciar seus links úiteis</p>
+        <h2>Faça seu login</h2>
+        <Input
+          placeholder="E-mail"
+          type="text"
+          icon={FiMail}
+          onChange={e => setEmail(e.target.value)}
+        />
 
-                <h2>Faça seu login</h2>
-                <Input
-                placeholder="E-mail"
-                type="text"
-                icon={FiMail}
-                onChange={e => setEmail(e.target.value)}
-                />
+        <Input
+          placeholder="Senha"
+          type="senha"
+          icon={FiLock}
+          onChange={e => setSenha(e.target.value)}
+        />
 
-                <Input
-                placeholder="Senha"
-                type="password"
-                icon={FiLock}
-                onChange={e => setPassword(e.target.value)}
-                />
+        <Button title="Entrar" onClick={handleSignIN} />
 
-                <Button  title="Entrar" onClick={handleSignIN}  />
+        <Link to="/register">
+          Criar conta
+        </Link>
+      </Form>
 
-                <Link to="/register">
-                    Criar conta
-                </Link>
-            </Form>
-
-            <Background/>
-        </Container>
-    );
+      <Background />
+    </Container>
+  );
 }

@@ -14,16 +14,16 @@ import { Container , Form, Background} from './styles';
 export function SignUp(){
     const [name, setName] = useState(""); //Quando criamos um estado, podemos informar um valor inicial --
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [senha, setSenha] = useState("");
 
     const navigate = useNavigate();
 
     function handleSignUp(){
-        if (!name || !email || !password){
+        if (!name || !email || !senha){
             return   alert("Preencha todos os campos")
         }
 
-        api.post("/users", {name, email, password})
+        api.post("/usuario", {name, email, senha})
         .then( () => {
             alert("usuário cadastrado com sucesso!");
             navigate("/");
@@ -42,10 +42,10 @@ export function SignUp(){
              <Background/>
 
             <Form>
-                <h1>Rocket Notes</h1>
-                <p>Aplicação para salvar e gerenciar seus links úiteis</p>
+                <h1>Supla-Ment</h1>
+                <p>Compre os melhores suplementos</p>
 
-                <h2>Crie sua conta</h2>
+                <h2>Cadastro</h2>
                 <Input
                 placeholder="Nome"
                 type="text"
@@ -62,12 +62,12 @@ export function SignUp(){
 
                 <Input
                 placeholder="Senha"
-                type="password"
+                type="senha"
                 icon={FiLock}
-                onChange= {event => setPassword(event.target.value)}
+                onChange= {event => setSenha(event.target.value)}
                 />
 
-                <Button  title="Cadastrar"   onClick={handleSignUp}  />
+                <Button  title="Cadastrar" onClick={handleSignUp}/>
 
                 <Link to="/">
                     Voltar para o login
